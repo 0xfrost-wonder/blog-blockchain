@@ -15,17 +15,19 @@ paths:
             type: object
             properties:
               post:
-                type: object
-                properties:
-                  title:
-                    type: string
-                  body:
-                    type: string
-                  creator:
-                    type: string
-                  id:
-                    type: string
-                    format: uint64
+                type: array
+                items:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                    body:
+                      type: string
+                    creator:
+                      type: string
+                    id:
+                      type: string
+                      format: uint64
               pagination:
                 type: object
                 properties:
@@ -44105,17 +44107,19 @@ definitions:
     type: object
     properties:
       post:
-        type: object
-        properties:
-          title:
-            type: string
-          body:
-            type: string
-          creator:
-            type: string
-          id:
-            type: string
-            format: uint64
+        type: array
+        items:
+          type: object
+          properties:
+            title:
+              type: string
+            body:
+              type: string
+            creator:
+              type: string
+            id:
+              type: string
+              format: uint64
       pagination:
         type: object
         properties:

@@ -12,7 +12,7 @@ import (
 
 func (k msgServer) DeletePost(goCtx context.Context, msg *types.MsgDeletePost) (*types.MsgDeletePostResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
-	val, found := k.GetPost(ctx, msg.Id)
+	_, found := k.GetPost(ctx, msg.Id)
 
 	if !found {
 		return nil, sdkerrors.Wrap(sdkerrors.ErrKeyNotFound, fmt.Sprintf("key %d doesn't exist", msg.Id))
