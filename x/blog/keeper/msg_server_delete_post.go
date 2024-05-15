@@ -2,16 +2,23 @@ package keeper
 
 import (
 	"context"
+	"fmt"
 
 	"blog/x/blog/types"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )
 
 func (k msgServer) DeletePost(goCtx context.Context, msg *types.MsgDeletePost) (*types.MsgDeletePostResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
+	val, found := k.GetPost(ctx, msg.Id)
 
-	// TODO: Handling the message
-	_ = ctx
+	if !found {
+		return nil, sdkerrors.Wrap(sdkerrors.ErrKeyNotFound, fmt.Sprintf("key %d doesn't exist", msg.Id))
+	}
+
+	k.RemovePost(ctx, msg.Id)
 
 	return &types.MsgDeletePostResponse{}, nil
 }
